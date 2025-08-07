@@ -11,17 +11,6 @@ class BusinessEntityCreator(
 
     fun create(): Int {
         return businessEntityRepository.save(BusinessEntity()).businessEntityId!!
-
-//        val entity = BusinessEntity()
-//        val person = Person().apply {
-//            this.businessEntity = entity
-//            this.personType = ApplicationConstant.personTypeEmployee
-//            this.firstName = "Nombre"
-//            this.middleName = null
-//            this.lastName = "Apellido"
-//        }
-//        entity.person = person // 🔥 ¡Importante para evitar fetch cíclico o null!
-//        return BusinessEntity()
     }
 
 }

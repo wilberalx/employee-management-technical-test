@@ -21,20 +21,3 @@ class BusinessEntity : BaseEntityFields() {
     var businessEntityId: Int? = null
 
 }
-
-//@Entity
-//@Table(name = "BusinessEntity", schema = "Person")
-//@Inheritance(strategy = InheritanceType.JOINED)
-//open class BusinessEntity(
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "BusinessEntityID")
-//    var businessEntityId: Int? = null,
-//
-//    @Column(name = "rowguid")
-//    var rowguid: UUID? = UUID.randomUUID(),
-//
-//    @Column(name = "ModifiedDate")
-//    var modifiedDate: LocalDateTime? = LocalDateTime.now()
-//)

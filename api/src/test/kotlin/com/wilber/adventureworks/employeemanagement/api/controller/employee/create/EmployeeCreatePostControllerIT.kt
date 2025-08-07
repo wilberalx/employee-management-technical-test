@@ -1,8 +1,8 @@
 package com.wilber.adventureworks.employeemanagement.api.controller.employee.create
 
-import com.wilber.adventureworks.employeemanagement.api.controller.shared.SpringIntegrationTest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wilber.adventureworks.employeemanagement.api.controller.employee.dto.EmployeeSummaryJson
+import com.wilber.adventureworks.employeemanagement.api.controller.shared.SpringIntegrationTest
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
@@ -34,7 +34,7 @@ class EmployeeCreatePostControllerIT : SpringIntegrationTest() {
             departmentName = "Test Department"
             departmentStartDate = LocalDate.now()
             phoneNumber = "555-1234"
-            phoneNumberTypeId = 1  // asume válido
+            phoneNumberTypeId = 1
             emailAddress = "john.public@test.com"
             addressLine1 = "123 Test St"
             addressLine2 = "Apt 456"
