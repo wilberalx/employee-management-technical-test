@@ -1,0 +1,21 @@
+<mat-card class="h-full w-full p-2">
+
+  <div class="flex gap-8">
+    <mat-form-field appearance="outline" class="flex-1">
+      <mat-label>Search employee</mat-label>
+      <input matInput [(ngModel)]="searchText" (input)="onSearch()" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="flex-1 self-center" (click)="onAdd()">
+      <mat-icon class="mr-2">add</mat-icon>
+      Add Employee
+    </button>
+  </div>
+
+  <ag-grid-angular class="ag-theme-alpine h-full w-full" [rowData]="filteredData" [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef" [domLayout]="'normal'" (gridReady)="onGridReady($event)" [pagination]="true"
+    [paginationPageSize]="50">
+  </ag-grid-angular>
+
+</mat-card>

@@ -1,0 +1,76 @@
+<mat-card class="h-full w-full p-2">
+
+  <form [formGroup]="form" class="w-full flex flex-col">
+    <div class="flex gap-8">
+      <mat-form-field appearance="outline" class="flex-1 min-w-0">
+        <mat-label>Start date</mat-label>
+        <input matInput [matDatepicker]="pickerStartDate" formControlName="startDate" />
+        <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStartDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="flex-1 min-w-0">
+        <mat-label>End date</mat-label>
+        <input matInput [matDatepicker]="pickerEndDate" formControlName="endDate" />
+        <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEndDate></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+
+    <div class="flex gap-8">
+
+      <mat-form-field appearance="outline" class="flex-1 min-w-0">
+        <mat-label>Employee code</mat-label>
+        <input matInput formControlName="employeId" type="number" step="1" />
+
+        <span *ngIf="employeeName" matSuffix class="flex items-center gap-2 text-gray-600 pr-2">
+          <mat-icon>person</mat-icon>
+          <span class="text-sm">{{ employeeName }}</span>
+        </span>
+      </mat-form-field>
+
+      <div class="flex flex-1 min-w-0 gap-8">
+        <button mat-raised-button color="primary" class="flex-1 min-w-0 self-center" (click)="onSearch()"
+          [disabled]="form.invalid || form.disabled">
+          <mat-icon class="mr-2">search</mat-icon>
+          Search sales
+        </button>
+        <button mat-stroked-button class="flex-1 min-w-0 self-center" (click)="backToAdmin()"
+          *ngIf="this.routeEmployeeId" [disabled]="form.disabled">
+          <mat-icon class="mr-2">arrow_back</mat-icon>
+          Back to admin
+        </button>
+      </div>
+
+    </div>
+  </form>
+
+  <div class="flex flex-wrap justify-between gap-6 mb-2">
+
+    <mat-card class="flex-1 shadow-xl">
+      <mat-card-content class="text-center">
+        <div class="text-gray-600 text-sm">Total sales</div>
+        <div class="text-2xl font-bold text-green-700">
+          {{ totalSales | currency }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="flex-1 shadow-xl">
+      <mat-card-content class="text-center">
+        <div class="text-gray-600 text-sm">Avg. Sales/Day</div>
+        <div class="text-2xl font-bold text-blue-700">
+          {{ averageSalesPerDay | currency }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <ag-grid-angular class="ag-theme-alpine h-full w-full" [rowData]="rowData" [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef" [domLayout]="'normal'" (gridReady)="onGridReady($event)"
+    [pinnedBottomRowData]="totalRowData">
+  </ag-grid-angular>
+
+</mat-card>

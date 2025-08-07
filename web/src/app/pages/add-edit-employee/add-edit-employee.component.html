@@ -1,0 +1,163 @@
+<div class="h-full flex flex-col">
+  <mat-card class="h-full w-full p-0 flex flex-col overflow-hidden">
+
+    <mat-card-actions align="end" class="gap-4">
+      <button mat-stroked-button color="warn" (click)="onCancel()">Cancel</button>
+      <button mat-flat-button color="primary" (click)="onSave()"
+        [disabled]="employeeForm.invalid || employeeForm.disabled">Save</button>
+    </mat-card-actions>
+
+    <div class="p-6 flex-1 overflow-auto flex flex-col space-y-4">
+
+      <form [formGroup]="employeeForm" class="w-full flex flex-col gap-4">
+
+        <div class="relative my-6">
+          <span class="absolute -top-3 left-4 bg-white px-2 text-sm font-semibold text-gray-500">Personal data</span>
+          <mat-divider></mat-divider>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="firstName" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Middle name</mat-label>
+            <input matInput formControlName="middleName" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Last name</mat-label>
+            <input matInput formControlName="lastName" />
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+
+          <mat-form-field appearance="outline" class="flex-1 min-w-0">
+            <mat-label>Birthdate</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="flex-1 min-w-0">
+            <mat-label>Phone number</mat-label>
+            <input matInput formControlName="phoneNumber" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="flex-1 min-w-0">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="emailAddress" />
+          </mat-form-field>
+
+        </div>
+
+
+        <div class="relative my-6">
+          <span class="absolute -top-3 left-4 bg-white px-2 text-sm font-semibold text-gray-500">Job</span>
+          <mat-divider></mat-divider>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Department</mat-label>
+            <mat-select formControlName="departmentId">
+              <mat-option *ngFor="let dept of departments" [value]="dept.departmentId">
+                {{ dept.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Shift</mat-label>
+            <mat-select formControlName="shiftId">
+              <mat-option *ngFor="let shit of shifts" [value]="shit.shiftId">
+                {{ shit.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+
+          <mat-form-field appearance="outline" class="flex-1 min-w-0">
+            <mat-label>Job title</mat-label>
+            <input matInput formControlName="jobTitle" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="flex-1 min-w-0">
+            <mat-label>Start date</mat-label>
+            <input matInput [matDatepicker]="pickerStartDate" formControlName="startDate" />
+            <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStartDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+
+        <div class="relative my-6">
+          <span class="absolute -top-3 left-4 bg-white px-2 text-sm font-semibold text-gray-500">Address</span>
+          <mat-divider></mat-divider>
+        </div>
+
+        <div class="flex w-full gap-4">
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="countryRegionCode" [panelClass]="'select-with-filter'">
+              <mat-option>
+                <input matInput placeholder="Filter countries..." [formControl]="countryFilterControl"
+                  autocomplete="off" (click)="$event.stopPropagation()" class="w-full" />
+              </mat-option>
+
+              <mat-option *ngFor="let country of filteredCountries" [value]="country.countryRegionCode">
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="stateProvinceId" [panelClass]="'select-with-filter'">
+              <mat-option>
+                <input matInput placeholder="Filter states..." [formControl]="stateFilterControl" autocomplete="off"
+                  (click)="$event.stopPropagation()" class="w-full" />
+              </mat-option>
+
+              <mat-option *ngFor="let state of filteredStates" [value]="state.stateProvinceId">
+                {{ state.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" />
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Postal code</mat-label>
+            <input matInput formControlName="postalCode" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Address line 1</mat-label>
+            <input matInput formControlName="addressLine1" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Address line 2</mat-label>
+            <input matInput formControlName="addressLine2" />
+          </mat-form-field>
+        </div>
+
+      </form>
+
+    </div>
+
+  </mat-card>
+
+</div>

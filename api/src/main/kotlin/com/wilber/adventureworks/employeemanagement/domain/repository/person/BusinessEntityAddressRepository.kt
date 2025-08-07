@@ -1,0 +1,7 @@
+package com.wilber.adventureworks.employeemanagement.domain.repository.person
+
+import com.wilber.adventureworks.employeemanagement.domain.entities.person.BusinessEntityAddress
+import com.wilber.adventureworks.employeemanagement.domain.entities.person.BusinessEntityAddressId
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface BusinessEntityAddressRepository : JpaRepository<BusinessEntityAddress, BusinessEntityAddressId>

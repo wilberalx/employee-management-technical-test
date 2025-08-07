@@ -1,0 +1,20 @@
+<mat-sidenav-container class="h-screen">
+  <mat-sidenav #sidenav mode="side" [(opened)]="menuOpened" class="mat-elevation-z4 mat-primary">
+    <app-sidebar (closeMenu)="menuOpened = !menuOpened"></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content class="flex flex-col h-full">
+    <mat-toolbar class="mat-elevation-z2">
+      <button mat-icon-button (click)="menuOpened = !menuOpened" aria-label="Abrir menú">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>{{ pageTitle }}</h1>
+    </mat-toolbar>
+
+    <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate" color="accent" class="h-1">
+    </mat-progress-bar>
+
+    <div class="p-2 flex-1 overflow-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
