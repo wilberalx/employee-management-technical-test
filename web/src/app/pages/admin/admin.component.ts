@@ -41,7 +41,7 @@ export class AdminComponent {
     { field: 'fullName', headerName: 'Name', width: 250 },
     { field: 'jobTitle', headerName: 'Job Title', width: 250 },
     { field: 'departmentName', headerName: 'Department', width: 200 },
-    { field: 'departmentStartDate', headerName: 'Hire Date', width: 125 },
+    { field: 'departmentStartDate', headerName: 'Start date', width: 125 },
     { field: 'birthDate', headerName: 'Birth Date', width: 125 },
     { field: 'phoneNumber', headerName: 'Phone', width: 150 },
     { field: 'emailAddress', headerName: 'Email', width: 200 },

@@ -56,6 +56,7 @@ export class AddEditEmployeeComponent implements OnInit, AfterViewInit {
   states: StateProvince[] = [];
   filteredStates: StateProvince[] = [];
   loading = false;
+  maxBirthDate: Date = new Date();
 
   employeeForm: FormGroup = new FormGroup({
     firstName: new FormControl(null, [Validators.required]),
@@ -264,6 +265,8 @@ export class AddEditEmployeeComponent implements OnInit, AfterViewInit {
         c.name?.toLowerCase().includes(value?.toLowerCase() || '')
       );
     });
+    this.maxBirthDate = new Date();
+    this.maxBirthDate.setFullYear(this.maxBirthDate.getFullYear() - 18);
   }
 
 }

@@ -176,12 +176,22 @@ export class SalesReportComponent {
   }
 
   getAverageSalesPerDay(totalSales: number): number {
-    let startDate = this.form.value.startDate ? new Date(this.form.value.startDate) : this.getFirstDayOfMonth(this.rowData[0].orderDate);
-    let endDate = this.form.value.endDate ? new Date(this.form.value.endDate) : this.getLastDayOfMonth(this.rowData[0].orderDate);
-    this.form.controls['startDate'].setValue(this.toStartOfDay(startDate));
-    this.form.controls['endDate'].setValue(this.toStartOfDay(endDate));
+    let startDate = this.form.value.startDate
+      ? new Date(this.form.value.startDate)
+      : this.getFirstDayOfMonth(this.rowData[0].orderDate);
 
-    const days = endDate.getDate() - startDate.getDate() + 1;
+    let endDate = this.form.value.endDate
+      ? new Date(this.form.value.endDate)
+      : this.getLastDayOfMonth(this.rowData[0].orderDate);
+
+    startDate = this.toStartOfDay(startDate);
+    endDate = this.toStartOfDay(endDate);
+
+    this.form.controls['startDate'].setValue(startDate);
+    this.form.controls['endDate'].setValue(endDate);
+
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const days = Math.round((endDate.getTime() - startDate.getTime()) / msPerDay) + 1;
 
     if (days <= 0) {
       return 0;

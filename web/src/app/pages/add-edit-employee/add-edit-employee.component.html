@@ -37,7 +37,7 @@
 
           <mat-form-field appearance="outline" class="flex-1 min-w-0">
             <mat-label>Birthdate</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+            <input matInput [matDatepicker]="picker" formControlName="birthDate" [max]="maxBirthDate"/>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -119,7 +119,7 @@
 
 
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Country</mat-label>
+            <mat-label>State</mat-label>
             <mat-select formControlName="stateProvinceId" [panelClass]="'select-with-filter'">
               <mat-option>
                 <input matInput placeholder="Filter states..." [formControl]="stateFilterControl" autocomplete="off"
